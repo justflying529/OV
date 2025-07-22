@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Container for the home logo and HOME text, aligns them horizontally */
+      .home-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      /* Group HOME and photo for shared hover effect */
+      .home-link {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+      /* Makes the home logo look clickable */
+      .home-photo-button {
+        cursor: pointer;
+      }
+      /* Shared hover effect for both elements */
+      .home-link:hover .home-photo-button {
+        transform: scale(1.15) rotate(-8deg);
+      }
+      .home-link:hover .go-to-home {
+        text-decoration: underline;
+        transform: scale(1.05);
+      }
+      /* Styles the HOME text */
+      .go-to-home {
+        font-family: "monospace";
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 0;
+        margin-top: 0;
+        margin-left: 8px; /* Space between logo and HOME */
+        transition: transform 0.2s;
+      }
+      /* Styles all images (including the home logo) */
+      img {
+        width: 25px;
+        height: 25px;
+        border-radius: 50px; /* Makes the image round */
+        margin-right: 0px;
+        object-fit: cover;
+        transition: transform 0.2s;
+        /* float removed: image is now handled by flexbox */
+      }
+      /* Styles the Subscribe button */
+      button {
+        font-family: "monospace";
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 20px;
+        padding: 12px 32px;
+        background: linear-gradient(90deg, #ff1900 0%, #cc0000 100%);
+        color: white;
+        border: none;
+        border-radius: 50px; /* Makes the button pill-shaped */
+        font-size: 1.1em;
+        box-shadow: 0 2px 8px rgba(231, 76, 60, 0.12);
+        transition: background 0.2s, transform 0.2s;
+      }
+      button:hover {
+        background: linear-gradient(90deg, #cc0000 0%, #ff1900 100%);
+        transform: scale(1.05);
+      }
+    </style>
+    <title>Socials</title>
+  </head>
+  <body>
+    <!-- Home navigation bar: logo and HOME text side by side, with shared hover/click -->
+    <div class="home-container">
+      <div class="home-link" onclick="window.location.href='/index.html'">
+        <img
+          class="home-photo-button"
+          src="images/home_logo.png"
+          alt="Back to home logo"
+        />
+        <p class="go-to-home">HOME</p>
+      </div>
+    </div>
+    <!-- Page title -->
+    <h1>Socials Page</h1>
+    <!-- Subscribe button -->
+    <button id="subscribe-btn">Subscribe</button>
+  </body>
+</html>

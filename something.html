@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Sets character encoding -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Responsive design for mobile -->
+    <title>Something Cool</title>
+    <style>
+      /* Sets a gradient background and centers the container */
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(120deg, #232526 0%, #414345 100%);
+        font-family: "Segoe UI", Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      /* Main card container for all content */
+      .container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+        padding: 40px 36px 32px 36px;
+        min-width: 350px;
+        max-width: 95vw;
+        text-align: center;
+        position: relative;
+      }
+      /* Styles the main heading */
+      h1 {
+        margin-top: 0;
+        font-size: 2.3em;
+        color: #232526;
+        letter-spacing: 2px;
+        margin-bottom: 18px;
+      }
+      /* Row of main buttons */
+      .btn-row {
+        display: flex;
+        justify-content: center;
+        gap: 18px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      /* Styles for all main buttons */
+      .cool-btn {
+        font-family: "monospace";
+        font-weight: bold;
+        font-size: 1.1em;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 50px;
+        background: linear-gradient(90deg, #00c3ff 0%, #ffff1c 100%);
+        color: #232526;
+        box-shadow: 0 2px 8px rgba(0, 195, 255, 0.12);
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s, color 0.2s;
+        margin-bottom: 10px;
+      }
+      /* Button hover effect */
+      .cool-btn:hover {
+        background: linear-gradient(90deg, #ffff1c 0%, #00c3ff 100%);
+        color: #fff;
+        transform: scale(1.08) rotate(-2deg);
+      }
+      /* Output box for messages and counter */
+      .output-box {
+        background: #f7f7f7;
+        border-radius: 12px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+        padding: 18px 14px;
+        min-height: 40px;
+        margin-bottom: 18px;
+        font-size: 1.1em;
+        color: #232526;
+        transition: background 0.2s;
+      }
+      /* Section for the slider */
+      .slider-section {
+        margin: 18px 0;
+      }
+      /* Label for the slider */
+      .slider-label {
+        font-size: 1em;
+        color: #232526;
+        margin-bottom: 6px;
+        display: block;
+      }
+      /* Styles the slider input */
+      .slider {
+        width: 180px;
+        accent-color: #00c3ff;
+      }
+      /* Grid layout for the mini-cards */
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+      /* Styles for each mini-card */
+      .mini-card {
+        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        border-radius: 12px;
+        padding: 18px 10px;
+        box-shadow: 0 1px 6px rgba(252, 182, 159, 0.13);
+        font-size: 1em;
+        color: #232526;
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        user-select: none;
+      }
+      /* Mini-card hover effect */
+      .mini-card:hover {
+        transform: scale(1.07) rotate(1deg);
+        box-shadow: 0 4px 16px rgba(252, 182, 159, 0.22);
+        background: linear-gradient(135deg, #fcb69f 0%, #ffecd2 100%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Something Cool</h1>
+      <!-- Main heading -->
+      <div class="btn-row">
+        <!-- Button: shows "Hello, world!" in output box -->
+        <button class="cool-btn" onclick="showMessage('Hello, world!')">
+          Say Hello
+        </button>
+        <!-- Button: increments and shows a counter -->
+        <button class="cool-btn" onclick="incrementCounter()">Count Up</button>
+        <!-- Button: changes card background color randomly -->
+        <button class="cool-btn" onclick="randomColor()">Random Color</button>
+        <!-- Button: resets everything to default -->
+        <button class="cool-btn" onclick="resetAll()">Reset</button>
+      </div>
+      <!-- Box that displays messages and counter -->
+      <div class="output-box" id="output">Press a button above!</div>
+      <div class="slider-section">
+        <!-- Label for the slider -->
+        <label class="slider-label" for="rangeSlider">Adjust the slider:</label>
+        <!-- Range slider input -->
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          class="slider"
+          id="rangeSlider"
+          oninput="sliderChanged(this.value)"
+        />
+        <!-- Shows current slider value -->
+        <span id="sliderValue">50</span>
+      </div>
+      <!-- Grid of interactive mini-cards -->
+      <div class="card-grid">
+        <!-- Each card shows a message in the output box when clicked -->
+        <div class="mini-card" onclick="showMessage('Card 1 clicked!')">
+          Card 1
+        </div>
+        <div class="mini-card" onclick="showMessage('Card 2 clicked!')">
+          Card 2
+        </div>
+        <div class="mini-card" onclick="showMessage('Card 3 clicked!')">
+          Card 3
+        </div>
+        <div class="mini-card" onclick="showMessage('Card 4 clicked!')">
+          Card 4
+        </div>
+      </div>
+    </div>
+    <script>
+      // Counter variable for the Count Up button
+      let count = 0;
+      // Shows a message in the output box
+      function showMessage(msg) {
+        document.getElementById("output").textContent = msg;
+      }
+      // Increments and displays the counter
+      function incrementCounter() {
+        count++;
+        document.getElementById("output").textContent = "Counter: " + count;
+      }
+      // Changes the card background to a random color
+      function randomColor() {
+        const colors = [
+          "#00c3ff",
+          "#ffff1c",
+          "#fcb69f",
+          "#ffecd2",
+          "#cc0000",
+          "#ff1900",
+          "#232526",
+          "#414345",
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        document.querySelector(".container").style.background = color;
+        showMessage("Background changed!");
+      }
+      // Resets everything to default state
+      function resetAll() {
+        count = 0;
+        document.getElementById("output").textContent = "Press a button above!";
+        document.querySelector(".container").style.background =
+          "rgba(255,255,255,0.95)";
+        document.getElementById("rangeSlider").value = 50;
+        document.getElementById("sliderValue").textContent = 50;
+      }
+      // Updates slider value and output box
+      function sliderChanged(val) {
+        document.getElementById("sliderValue").textContent = val;
+        document.getElementById("output").textContent = "Slider value: " + val;
+      }
+    </script>
+  </body>
+</html>
